@@ -2,6 +2,10 @@ import express, { NextFunction, Request, Response } from "express";
 import customError from "../middlewares/customError";
 const app = express();
 import authRouter from "../routes/user";
+import bookingRouter from "../routes/booking";
+import tripRouter from "../routes/trip";
+import ticketRouter from "../routes/ticket";
+import busRouter from "../routes/bus";
 
 import { Config } from "../config";
 import { IAppContext } from "../types/app";
@@ -26,6 +30,10 @@ export const start = async (config: Config) => {
 
     //use routes
     app.use("/api/v1/auth", authRouter);
+    app.use("/api/v1/booking", bookingRouter);
+    app.use("/api/v1/trip", tripRouter);
+    app.use("/api/v1/ticket", ticketRouter);
+    app.use("/api/v1/bus", busRouter);
 
     //use custom error middleware
     app.use(customError);

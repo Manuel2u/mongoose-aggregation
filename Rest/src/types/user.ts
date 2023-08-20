@@ -8,7 +8,7 @@ export interface IUser {
   password: string;
   isPhoneNumberVerified: boolean;
   isEmailVerified: boolean;
-  role: "USER";
+  role: "USER" | "ADMIN";
   googleID?: string;
   appleID?: string;
   faceBookID?: string;
