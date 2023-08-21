@@ -125,7 +125,7 @@ export default class UserService extends IService {
     });
 
     try {
-      const user = await this.db.UserModel.findOne(generatedQuery.filter)
+      const user = await this.db.UserModel.find(generatedQuery.filter)
         .sort(generatedQuery.sort)
         .skip(generatedQuery.skip)
         .limit(generatedQuery.limit)

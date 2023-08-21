@@ -54,19 +54,6 @@ function buildOperation(operation: OperationInputProps): OperationOutputProps {
   return result as OperationOutputProps;
 }
 
-// function generatePopulateOptions(field: string): PopulateOptions {
-//   if (field.includes(".")) {
-//     const [path, nestedField] = field.split(".");
-//     return {
-//       path,
-//       populate: generatePopulateOptions(nestedField),
-//     };
-//   }
-//   return { path: field };
-// }
-
-// ...
-
 function buildPopulationOptions(
   path: string,
   skip: number,
@@ -120,24 +107,19 @@ export function __generateQuery(
   };
 }
 
-// ...
+// // ...
 
-// ...
+// // ...
 
-const queryProps = {
-  filter: {
-    email: { eq: "emmanueldodoo94@gmail.com" },
-  },
-  pagination: { skip: 0, limit: 10 },
-  populate: [
-    "Tickets",
-    "Bookings.Trip",
-    "Bookings.Bus",
-    "Bookings.Trip.user.Booking",
-  ],
-  sort: { email: "asc" as const },
-};
+// const queryProps = {
+//   filter: {
+//     email: { eq: "emmanueldodoo94@gmail.com" },
+//   },
+//   pagination: { skip: 0, limit: 10 },
+//   populate: ["Tickets", "Bookings.Trip", "Bookings.Bus"],
+//   sort: { email: "asc" as const },
+// };
 
-const generatedQuery = __generateQuery("User", queryProps);
+// const generatedQuery = __generateQuery("User", queryProps);
 
-console.log("Generated Query:", JSON.stringify(generatedQuery, null, 2));
+// console.log("Generated Query:", JSON.stringify(generatedQuery, null, 2));
