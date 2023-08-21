@@ -68,3 +68,67 @@ export const SIGNIN = async (
     next(e);
   }
 };
+
+export const CREATEADMIN = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const {
+      email,
+      fullName,
+      password,
+      phone,
+    }: {
+      email: string;
+      fullName: string;
+      password: string;
+      phone: string;
+    } = req.body;
+
+    if (!email || !fullName || !password || !phone) {
+      return res
+        .status(400)
+        .json({ message: "Make sure all input fileds are correct" });
+    }
+
+    const _user = await req.context.services?.user.CreateAdmin({
+      email,
+      fullName,
+      password,
+      phone,
+    });
+
+    return res.status(200).json(_user);
+  } catch (e) {
+    next(e);
+  }
+};
+
+export const GET_USER = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const skip = parseInt(req.query.skip as string); // Convert to number
+    const limit = parseInt(req.query.limit as string); // Convert to number
+    console.log(req.query);
+
+    if (isNaN(skip) || isNaN(limit)) {
+      return res
+        .status(400)
+        .json({ message: "Make sure all input fields are correct" });
+    }
+    const _user = await req.context.services?.user.getUser({
+      id: req.user.user._id,
+      limit,
+      skip,
+    });
+
+    return res.status(200).json(_user);
+  } catch (e) {
+    next(e);
+  }
+};

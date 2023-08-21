@@ -52,7 +52,7 @@ export const CREATE_ONE = async (
       destination,
       tripStatus,
       tripType,
-      user: req.user._id,
+      user: req.user.user._id,
     });
 
     return res.status(200).json(_trip);

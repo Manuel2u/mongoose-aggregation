@@ -42,7 +42,7 @@ export const CREATE_ONE = async (
 
     const _bus = await req.context.services?.bus.createOne({
       vehicleNumber,
-      user: req.user._id,
+      user: req.user.user._id,
       model,
       yearOfMake,
       colour,

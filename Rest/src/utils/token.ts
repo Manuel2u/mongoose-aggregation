@@ -4,7 +4,9 @@ import { config } from "../config";
 
 export const _generateToken = (user: IUserSchema) => {
   try {
-    const token = jwt.sign({ id: user._id }, config.auth.secret, {expiresIn : config.auth.expiresIn});
+    const token = jwt.sign({ user: user }, config.auth.secret, {
+      expiresIn: config.auth.expiresIn,
+    });
     return token;
   } catch (e) {
     throw e;

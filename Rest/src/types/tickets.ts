@@ -8,6 +8,11 @@ export interface ITicket {
 
 export interface IcreateTicketInput extends ITicket {}
 
+export interface IGetTicket {
+  userid: Types.ObjectId;
+  ticketid: Types.ObjectId;
+}
+
 export interface IcreateTicketRequestBody extends Omit<ITicket, "user"> {}
 export interface ITicketSchema extends ITicket, Document {
   _id: Types.ObjectId;

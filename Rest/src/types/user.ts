@@ -51,4 +51,8 @@ export interface IUserSchema extends IUser, Document {
   updatedAt: Date;
 }
 
+export interface IJWT {
+  user: IUserSchema;
+}
+
 export interface IUserModel extends Model<IUserSchema> {}

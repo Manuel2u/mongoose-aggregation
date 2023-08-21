@@ -1,5 +1,6 @@
 import { IAppContext, IService } from "../types/app";
 import {
+  IGetTicket,
   ITicketModel,
   ITicketSchema,
   IcreateTicketInput,
@@ -15,6 +16,19 @@ export class TicketService extends IService {
       const ticket = new this.db.TicketModel({ ...input });
       await ticket.save();
       return ticket;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async GetATicket(input: IGetTicket) {
+    try {
+      const updatedUser = await this.db?.UserModel.findOneAndUpdate(
+        { _id: input.userid },
+        { $push: { Bookings: input.ticketid } },
+        { new: true }
+      );
+      return updatedUser;
     } catch (e) {
       throw e;
     }

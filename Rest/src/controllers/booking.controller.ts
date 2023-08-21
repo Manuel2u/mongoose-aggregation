@@ -29,8 +29,15 @@ export const CREATE_ONE = async (
       Bus,
       Trip,
       numOfSeats,
-      user: req.user._id,
+      user: req.user.user._id,
     });
+
+    // Update user's Bookings array with the booking's ID
+    const updatedUser = await req.context.db?.UserModel.findOneAndUpdate(
+      { _id: req.user.user._id },
+      { $push: { Bookings: _booking?._id } },
+      { new: true }
+    );
 
     return res.status(200).json(_booking);
   } catch (e) {
